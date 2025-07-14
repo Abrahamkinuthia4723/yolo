@@ -199,6 +199,7 @@ This allows:
 | Backend  | `5000`         | `5000`    | API server (Node.js).                 |
 | Frontend | `80`           | `3000`    | NGINX serving React app at port 3000. |
 
+---
 
 # Volume Definition & Usage
 
@@ -208,3 +209,42 @@ volumes:
 ```
 
 **mongo-data:/data/db**: Ensures MongoDB stores data persistently (e.g. added products).
+
+---
+
+# Git Workflow
+---
+Below is a summary of the Git workflow followed during this project:
+#### Deleted initial Dockerfiles and docker-compose
+#### Add Dockerfile for backend service using node:18-alpine
+#### Add Dockerfile for frontend service with multi-stage build
+#### Create docker-compose.yaml with MongoDB, backend, and frontend services
+#### Push backend and frontend images to DockerHub with version tags
+#### Update README.md file
+#### Explain reasoning for base image choices
+#### Document Dockerfile directives in README.md
+#### Explain Docker Compose networking strategy
+#### Explain Docker volume definition and usage
+---
+
+ # Docker Best Practices Followed
+ ---
+ Multi-stage builds for minimal image size
+
+ Image versioning using tags:
+
+- ***abrahamkinuthia4723/yolo-frontend:1.0.0***
+- ***abrahamkinuthia4723/yolo-backend:1.0.0***
+
+ Images pushed to DockerHub
+
+ Image sizes optimized:
+ https://github.com/user-attachments/assets/c454ed91-fef7-45fb-813f-439626ccea66
+
+---
+
+# Deployed images on DockerHub
+https://github.com/user-attachments/assets/2f6b9168-6408-4103-82db-b28b52686784
+https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7
+
+---
