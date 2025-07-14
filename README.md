@@ -1,4 +1,4 @@
-# Yolo E-commerce App 🛒
+# Yolo E-commerce App 
 
 A containerized full-stack e-commerce platform with MongoDB, Express (Node.js), and React, built using Docker and Docker Compose.
 
@@ -145,3 +145,56 @@ CMD ["nginx", "-g", "daemon off;"]
 | `CMD ["nginx", "-g", "daemon off;"]`                 | Keeps NGINX running in the foreground (Docker best practice).                     |
 
 ---
+
+# Docker-compose networking.
+
+To enable efficient communication between containers, I implemented a custom bridge network in the docker-compose.yml file. This approach ensures that all services can resolve each other by container name and interact seamlessly while remaining isolated from the host environment unless explicitly exposed.
+
+---
+
+### Network Configuration
+
+```yaml
+networks:
+  yolo-network:
+    driver: bridge
+```
+---
+
+| Key            | Description                                                              |
+| -------------- | ------------------------------------------------------------------------ |
+| `yolo-network` | Custom user-defined bridge network for internal container communication. |
+| `bridge`       | The default Docker driver, ideal for linking standalone containers.      |
+
+---
+
+### Network Usage in Services
+
+All services (MongoDB, Backend, Frontend) are connected to the same bridge network to enable internal communication:
+
+```yaml
+services:
+  mongo:
+    networks:
+      - yolo-network
+
+  backend:
+    networks:
+      - yolo-network
+
+  frontend:
+    networks:
+      - yolo-network
+```
+---
+
+This allows:
+
+- **The backend to connect to MongoDB via the hostname mongo.**
+- **The frontend to communicate with the backend using backend as the hostname.**
+
+| Service  | Container Port | Host Port | Purpose                               |
+| -------- | -------------- | --------- | ------------------------------------- |
+| MongoDB  | `27017`        | `27017`   | Database access (for tools/CLI).      |
+| Backend  | `5000`         | `5000`    | API server (Node.js).                 |
+| Frontend | `80`           | `3000`    | NGINX serving React app at port 3000. |
