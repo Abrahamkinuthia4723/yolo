@@ -1,15 +1,16 @@
-# Overview
-This project involved the containerization and deployment of a full-stack yolo application using Docker.
+# Yolo E-commerce App 🛒
+
+A containerized full-stack e-commerce platform with MongoDB, Express (Node.js), and React, built using Docker and Docker Compose.
 
 
-# Requirements
-Install the docker engine here:
-- [Docker](https://docs.docker.com/engine/install/) 
+How to access this project in your local machine.
 
-## How to launch the application 
+### 1. Fork this respiratory.
 
+### 2. Open your local terminal.
 
-![Alt text](image.png)
+### 3. Git clone the respiratory SSH url into your local terminal.
 
-## How to run the app
-Use vagrant up --provison command
+### 4. cd into yolo folder.
+
+### 5. Finally, enter into your vs code by writing code . in your terminal and start writing your code
