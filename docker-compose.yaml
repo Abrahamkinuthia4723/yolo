@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+
+  mongo:
+    container_name: mongo-db
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - yolo-network
+
+  backend:
+    container_name: backend-container
+    image: yolo-backend:1.0.0
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - backend-volume:/app
+    networks:
+      - yolo-network
+    depends_on:
+      - mongo
+
+  frontend:
+    container_name: frontend-container
+    image: yolo-frontend:1.0.0
+    build:
+      context: ./client
+    ports:
+      - "3000:80"
+    networks:
+      - yolo-network
+    depends_on:
+      - backend
+
+networks:
+  yolo-network:
+    driver: bridge
+
+volumes:
+  backend-volume:
+  mongo-data:
