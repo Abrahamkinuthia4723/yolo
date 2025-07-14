@@ -198,3 +198,13 @@ This allows:
 | MongoDB  | `27017`        | `27017`   | Database access (for tools/CLI).      |
 | Backend  | `5000`         | `5000`    | API server (Node.js).                 |
 | Frontend | `80`           | `3000`    | NGINX serving React app at port 3000. |
+
+
+# Volume Definition & Usage
+
+```yaml
+volumes:
+  mongo-data:
+```
+
+**mongo-data:/data/db**: Ensures MongoDB stores data persistently (e.g. added products).
