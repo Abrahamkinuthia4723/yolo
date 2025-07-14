@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
 
   mongo:
@@ -14,13 +12,9 @@ services:
 
   backend:
     container_name: backend-container
-    image: yolo-backend:1.0.0
-    build:
-      context: ./backend
+    image: abrahamkinuthia4723/yolo-backend:1.0.0
     ports:
       - "5000:5000"
-    volumes:
-      - backend-volume:/app
     networks:
       - yolo-network
     depends_on:
@@ -28,9 +22,7 @@ services:
 
   frontend:
     container_name: frontend-container
-    image: yolo-frontend:1.0.0
-    build:
-      context: ./client
+    image: abrahamkinuthia4723/yolo-frontend:1.0.0
     ports:
       - "3000:80"
     networks:
@@ -43,5 +35,4 @@ networks:
     driver: bridge
 
 volumes:
-  backend-volume:
   mongo-data:
