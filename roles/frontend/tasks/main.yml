@@ -8,5 +8,4 @@
       - "3000:80"
     networks:
       - name: "{{ network_name }}"
-    depends_on:
-      - backend-container
+  

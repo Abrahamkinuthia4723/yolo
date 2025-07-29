@@ -1,5 +1,5 @@
 - name: Run backend container
-  docker_container:
+  community.docker.docker_container:
     name: backend-container
     image: "{{ backend_image }}"
     state: started
@@ -8,5 +8,5 @@
       - "5000:5000"
     networks:
       - name: "{{ network_name }}"
-    depends_on:
-      - mongo-db
+    env:
+      MONGO_URL: mongodb://mongo-db:27017/yolo-db
