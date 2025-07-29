@@ -1,0 +1,16 @@
+- name: Update apt and install dependencies
+  apt:
+    name: [docker.io, git]
+    update_cache: yes
+    state: present
+
+- name: Ensure Docker is running
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Create Docker network
+  docker_network:
+    name: "{{ network_name }}"
+    driver: bridge
