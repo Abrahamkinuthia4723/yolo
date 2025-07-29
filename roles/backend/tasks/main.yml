@@ -1,0 +1,12 @@
+- name: Run backend container
+  docker_container:
+    name: backend-container
+    image: "{{ backend_image }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "5000:5000"
+    networks:
+      - name: "{{ network_name }}"
+    depends_on:
+      - mongo-db
