@@ -249,81 +249,84 @@ https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7
 
 ---
 
-# How the Ansible automation works in this project 
+# How the Ansible automation works in this project and the reasoning behind each part
+
+This project automates the deployment of a containerized e-commerce web application using:
+
+- **Vagrant** to create a virtual machine (VM)
+- **Ansible** to configure the VM and run Docker containers
+- **Docker** to run the application services:
+  - MongoDB (Database)
+  - Backend (Node.js API)
+  - Frontend (React.js App)
+
+All services are deployed inside the VM with a single command: `vagrant up`.
 
 ---
 
-## What This Project Does
+## Deployment Workflow
 
-This project:
-1. Creates a virtual machine using Vagrant.
-2. Uses Ansible to install Docker and other tools on the VM
-3. Uses Docker to run three containers:
-   - MongoDB (the database)
-   - Backend (API server built with Node.js)
-   - Frontend (User interface built with React)
-4. Connects all containers using a custom Docker network
-5. Makes the app accessible in your browser at `http://localhost:3000`
+The automation flow happens in four main roles:
 
-Everything is fully automated — One only need to run `vagrant up` once.
+1. **Common** – Installs tools like Docker and Git, and creates a Docker network.
+2. **MongoDB** – Starts the MongoDB container and creates a data volume.
+3. **Backend** – Runs the backend service in a container.
+4. **Frontend** – Launches the frontend React web application.
+
+Each step builds upon the previous one, ensuring all dependencies are in place.
 
 ---
 
-## How the Playbook Works
+## Role Breakdown
 
-Ansible reads a file called `playbook.yml` which tells it what to do step by step. These steps are split into roles (like tasks or folders of work).
+### 1. Common Role
 
-Here’s the order in which things happen and why:
+**Purpose**: Prepares the environment by installing essential tools.
 
----
-
-### 1. Common Role – Setup Tools
-
-Why it runs first: You need Docker and Git before running containers.
-
-What it does:
-- Updates system packages (apt)
-- Installs Docker and Git
-- Starts and enables the Docker service
-- Creates a Docker bridge network called `yolo-network` so containers can talk to each other
+**Key Tasks**:
+- Update package lists (`apt update`)
+- Install Docker and Git
+- Enable and start the Docker service
+- Create a custom Docker bridge network: `yolo-network`
 
 ---
 
-### 2. Mongo Role – Set Up Database
+### 2. MongoDB Role
 
-Why it runs second: The backend container needs the database to be running first.
+**Purpose**: Sets up the MongoDB database.
 
-What it does:
-- Pulls the official `mongo:6` image
-- Starts a MongoDB container named `mongo-db`
-- Exposes port `27017` so other services can connect
-- Uses a volume called `mongo-data` to save data permanently
-
----
-
-### 3. Backend Role – Run the API Server
-
-Why it runs third: It needs MongoDB running first to avoid crashing.
-
-What it does:
-- Pulls the backend image from Docker Hub:  
-  `abrahamkinuthia4723/yolo-backend:1.0.0`
-- Starts a container named `backend-container`
-- Exposes port `5000` so the frontend can talk to it
-- Connects to `yolo-network`
+**Key Tasks**:
+- Pull the MongoDB image: `mongo:6`
+- Create a container named `mongo-db`
+- Expose port `27017` for internal connections
+- Mount a volume: `mongo-data:/data/db` (for data persistence)
+- Connect to the `yolo-network`
 
 ---
 
-### 4. Frontend Role – Start the Website
+### 3. Backend Role
 
-Why it runs last: It talks to the backend, which must be running first.
+**Purpose**: Launches the backend API service.
 
-What it does:
-- Pulls the frontend image from Docker Hub:  
-  `abrahamkinuthia4723/yolo-frontend:1.0.0`
-- Starts a container named `frontend-container`
-- Maps port `80` in the container to `3000` on your machine
-- Lets you open the app in your browser: `http://localhost:3000`
+**Key Tasks**:
+- Pull image: `abrahamkinuthia4723/yolo-backend:1.0.0`
+- Create a container named `backend-container`
+- Expose port `5000`
+- Connect to the `yolo-network`
+- Ensure it depends on the MongoDB container
+
+---
+
+### 4. Frontend Role
+
+**Purpose**: Runs the user-facing React application.
+
+**Key Tasks**:
+- Pull image: `abrahamkinuthia4723/yolo-frontend:1.0.0`
+- Create a container named `frontend-container`
+- Map internal port `80` to host port `3000`
+- Connect to the `yolo-network`
+- Ensure it depends on the backend
 
 ---
 
@@ -331,13 +334,14 @@ What it does:
 
 ### Roles
 
-Each major part of the app (common setup, MongoDB, backend, frontend) is split into its own folder inside `roles/`. This makes things organized and reusable.
+Each role (common, mongo, backend, frontend) is isolated in its own directory under `roles/` for better structure and reuse.
 
 ### Variables
 
-All the important values like image names, port numbers, and volume names are stored in one file: `vars/main.yml`. This helps one change settings in one place without rewriting your playbook.
+Defined in `vars/main.yml`, variables make it easy to change image names, ports, and other settings from one file.
 
-Example:
+**Example**:
 ```yaml
 backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
+
 
