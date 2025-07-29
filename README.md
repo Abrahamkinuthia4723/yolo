@@ -225,6 +225,17 @@ Below is a summary of the Git workflow followed during this project:
 #### Document Dockerfile directives in README.md
 #### Explain Docker Compose networking strategy
 #### Explain Docker volume definition and usage
+### Deleted existing Vagrantfile, playbook.yml etc.  
+### Initialize Vagrantfile  
+### Write basic Ansible inventory and playbook.yml  
+### Add variable file with container and network config  
+### Add common role to install Docker and set up network  
+### Add mongo role to run MongoDB container with volume  
+### Add backend role to run Node.js API container  
+### Add frontend role to run React container  
+### Updated the Vagrantfile  
+### Fixed errors  
+### Updated readme
 ---
 
  # Docker Best Practices Followed
