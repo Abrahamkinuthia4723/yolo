@@ -1,0 +1,16 @@
+- name: Deploy YOLO E-Commerce Containers
+  hosts: all
+  become: true
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - role: common
+      tags: [base, setup]
+    - role: mongo
+      tags: [mongo, database]
+    - role: backend
+      tags: [api]
+    - role: frontend
+      tags: [web]
