@@ -248,3 +248,96 @@ https://github.com/user-attachments/assets/2f6b9168-6408-4103-82db-b28b52686784
 https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7
 
 ---
+
+# How the Ansible automation works in this project 
+
+---
+
+## What This Project Does
+
+This project:
+1. Creates a virtual machine using Vagrant.
+2. Uses Ansible to install Docker and other tools on the VM
+3. Uses Docker to run three containers:
+   - MongoDB (the database)
+   - Backend (API server built with Node.js)
+   - Frontend (User interface built with React)
+4. Connects all containers using a custom Docker network
+5. Makes the app accessible in your browser at `http://localhost:3000`
+
+Everything is fully automated — One only need to run `vagrant up` once.
+
+---
+
+## How the Playbook Works
+
+Ansible reads a file called `playbook.yml` which tells it what to do step by step. These steps are split into roles (like tasks or folders of work).
+
+Here’s the order in which things happen and why:
+
+---
+
+### 1. Common Role – Setup Tools
+
+Why it runs first: You need Docker and Git before running containers.
+
+What it does:
+- Updates system packages (apt)
+- Installs Docker and Git
+- Starts and enables the Docker service
+- Creates a Docker bridge network called `yolo-network` so containers can talk to each other
+
+---
+
+### 2. Mongo Role – Set Up Database
+
+Why it runs second: The backend container needs the database to be running first.
+
+What it does:
+- Pulls the official `mongo:6` image
+- Starts a MongoDB container named `mongo-db`
+- Exposes port `27017` so other services can connect
+- Uses a volume called `mongo-data` to save data permanently
+
+---
+
+### 3. Backend Role – Run the API Server
+
+Why it runs third: It needs MongoDB running first to avoid crashing.
+
+What it does:
+- Pulls the backend image from Docker Hub:  
+  `abrahamkinuthia4723/yolo-backend:1.0.0`
+- Starts a container named `backend-container`
+- Exposes port `5000` so the frontend can talk to it
+- Connects to `yolo-network`
+
+---
+
+### 4. Frontend Role – Start the Website
+
+Why it runs last: It talks to the backend, which must be running first.
+
+What it does:
+- Pulls the frontend image from Docker Hub:  
+  `abrahamkinuthia4723/yolo-frontend:1.0.0`
+- Starts a container named `frontend-container`
+- Maps port `80` in the container to `3000` on your machine
+- Lets you open the app in your browser: `http://localhost:3000`
+
+---
+
+## Ansible Features Used
+
+### Roles
+
+Each major part of the app (common setup, MongoDB, backend, frontend) is split into its own folder inside `roles/`. This makes things organized and reusable.
+
+### Variables
+
+All the important values like image names, port numbers, and volume names are stored in one file: `vars/main.yml`. This helps one change settings in one place without rewriting your playbook.
+
+Example:
+```yaml
+backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
+
