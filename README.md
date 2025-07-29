@@ -79,22 +79,22 @@ Uses serve package for efficient static file serving
 #### Docker Images with Semantic Versioning
 
    Both Backend and Client images are versioned and are less than 400MB of size
+   
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c454ed91-fef7-45fb-813f-439626ccea66" alt="Deployment on Vagrant" style="width:800px; max-width:100%; height:auto;" />
+</div>
 
-<img width="771" height="170" alt="image" src="https://github.com/user-attachments/assets/aa5589f1-ed08-4211-8f08-b127b74bde0c" />
+---
 
+# Deployed Images on DockerHub
 
-### Backend Image Pushed to Dockerhub
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2f6b9168-6408-4103-82db-b28b52686784" alt="Backend Docker Image" style="width:700px; max-width:100%; height:auto;" />
+  <br/><br/>
+  <img src="https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7" alt="Frontend Docker Image" style="width:700px; max-width:100%; height:auto;" />
+</div>
 
-<img width="949" height="601" alt="image" src="https://github.com/user-attachments/assets/18ead98e-05fc-4313-964b-936af638535f" />
-
-
-### Client Image Pushed to Dockerhub
-
-<img width="949" height="601" alt="image" src="https://github.com/user-attachments/assets/69dd15b6-ab58-481f-b7c3-e18bf28d2507" />
-
-
-
-
+---
 
 ## 🚀 Usage
 
