@@ -239,14 +239,19 @@ Below is a summary of the Git workflow followed during this project:
  Images pushed to DockerHub
 
  Image sizes optimized:
- 
-<img width="771" height="170" alt="image" src=" https://github.com/user-attachments/assets/c454ed91-fef7-45fb-813f-439626ccea66" />
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c454ed91-fef7-45fb-813f-439626ccea66" alt="Deployment on Vagrant" style="width:800px; max-width:100%; height:auto;" />
+</div>
 
 ---
 
-# Deployed images on DockerHub
-<img width="771" height="170" alt="image" src="https://github.com/user-attachments/assets/2f6b9168-6408-4103-82db-b28b52686784" />
-<img width="771" height="170" alt="image" src="https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7" />
+# Deployed Images on DockerHub
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2f6b9168-6408-4103-82db-b28b52686784" alt="Backend Docker Image" style="width:700px; max-width:100%; height:auto;" />
+  <br/><br/>
+  <img src="https://github.com/user-attachments/assets/91b8d060-b63c-4958-8ebd-85d1b72645c7" alt="Frontend Docker Image" style="width:700px; max-width:100%; height:auto;" />
+</div>
 
 ---
 
