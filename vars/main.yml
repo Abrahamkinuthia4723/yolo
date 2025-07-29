@@ -1,0 +1,4 @@
+network_name: yolo-network
+mongo_volume: mongo-data
+backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
+frontend_image: abrahamkinuthia4723/yolo-frontend:1.0.0
