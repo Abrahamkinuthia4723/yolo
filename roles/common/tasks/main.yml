@@ -1,16 +1,31 @@
-- name: Update apt and install dependencies
+- name: Install dependencies
   apt:
-    name: [docker.io, git]
+    name:
+      - git
+      - docker.io
     update_cache: yes
     state: present
 
-- name: Ensure Docker is running
+- name: Install Docker Compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/v2.24.1/docker-compose-linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'
+
+- name: Start and enable Docker service
   service:
     name: docker
     state: started
-    enabled: true
+    enabled: yes
 
 - name: Create Docker network
   docker_network:
     name: "{{ network_name }}"
     driver: bridge
+
+- name: Clone application repo
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ clone_dir }}"
+    version: master
+    force: yes
