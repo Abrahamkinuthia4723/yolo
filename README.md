@@ -301,10 +301,14 @@ Each step builds upon the previous one, ensuring all dependencies are in place.
 **Purpose**: Prepares the environment by installing essential tools.
 
 **Key Tasks**:
-- Update package lists (`apt update`)
-- Install Docker and Git
-- Enable and start the Docker service
-- Create a custom Docker bridge network: `yolo-network`
+- Updates system package cache.
+- Installs necessary packages:
+  - `git`
+  - `docker.io`
+- Installs Docker Compose manually (latest release).
+- Starts and enables the Docker service.
+- Creates a custom Docker bridge network (`yolo-network`).
+- Clones the YOLO E-Commerce application repository from GitHub into a specified directory.
 
 ---
 
