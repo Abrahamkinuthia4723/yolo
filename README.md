@@ -364,5 +364,17 @@ Defined in `vars/main.yml`, variables make it easy to change image names, ports,
 **Example**:
 ```yaml
 backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
+```
 
+---
 
+## Kubernetes Objects Used
+
+- **StatefulSet** for MongoDB: Provides stable network ID and persistent volumes, ensuring data persists across pod restarts.
+- **Deployments** for backend and frontend: Enables easy scaling, rolling updates, and self-healing of pods.
+- **Services** to expose pods internally and externally:
+  - `ClusterIP` services for internal communication between backend and MongoDB.
+  - `LoadBalancer` service to expose the frontend to the internet.
+- **PersistentVolumeClaims** to store MongoDB data securely and persistently.
+
+---
