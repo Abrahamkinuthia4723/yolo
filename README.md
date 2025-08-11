@@ -422,3 +422,11 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
 ## Running pods
   
   <img src="https://github.com/user-attachments/assets/b1d0c5af-017b-4d3b-a198-b0525d55c101" alt="running pods" style="width:800px; max-width:100%; height:auto;" />
+
+---
+
+## Persistence
+
+MongoDB uses a StatefulSet backed by PersistentVolumeClaims. This ensures data is not lost if the MongoDB pod restarts or is rescheduled.
+
+---
