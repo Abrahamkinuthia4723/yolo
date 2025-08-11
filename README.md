@@ -378,3 +378,12 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
 - **PersistentVolumeClaims** to store MongoDB data securely and persistently.
 
 ---
+
+## Prerequisites
+
+- A Kubernetes cluster (preferably GKE) with `kubectl` configured and connected.
+- Docker images for backend and frontend pushed to Docker Hub:
+  - `abrahamkinuthia4723/yolo-backend:1.0.0`
+  - `abrahamkinuthia4723/yolo-frontend:1.0.0`
+
+---
