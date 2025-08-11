@@ -387,3 +387,34 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
   - `abrahamkinuthia4723/yolo-frontend:1.0.0`
 
 ---
+
+
+## Deployment Instructions
+
+1. Apply the MongoDB service and StatefulSet:
+
+    ```bash
+    kubectl apply -f manifests/mongo-service.yml
+    kubectl apply -f manifests/mongo-statefulset.yml
+    ```
+
+2. Deploy the backend service and deployment:
+
+    ```bash
+    kubectl apply -f manifests/backend-service.yml
+    kubectl apply -f manifests/backend-deployment.yml
+    ```
+
+3. Deploy the frontend service and deployment:
+
+    ```bash
+    kubectl apply -f manifests/frontend-service.yml
+    kubectl apply -f manifests/frontend-deployment.yml
+    ```
+
+4. Check the status of the pods:
+
+    ```bash
+    kubectl get pods
+    ```
+    
