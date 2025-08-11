@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-frontend
+  labels:
+    app: yolo
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yolo
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: yolo
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: abrahamkinuthia4723/yolo-frontend:1.0.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
