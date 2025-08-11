@@ -236,6 +236,13 @@ Below is a summary of the Git workflow followed during this project:
 #### Updated the Vagrantfile  
 #### Fixed errors  
 #### Updated readme
+#### Created manifest folder and added yolo-frontend Deployment
+#### Add frontend service for browser access
+#### Create backend deployment manifest
+#### Add backend service for internal API communication
+#### Add MongoDB StatefulSet configuration
+#### configure MongoDB service for database connectivity
+#### update readme
 ---
 
  # Docker Best Practices Followed
