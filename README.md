@@ -418,8 +418,14 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
     kubectl apply -f manifests/frontend-service.yml
     kubectl apply -f manifests/frontend-deployment.yml
     ```
+4. Or simply run:
 
-4. Check the status of the pods:
+    ```bash
+     kubectl apply -f manifests/
+     ```
+    which deploys or updates all Kubernetes resources defined in the YAML files inside the manifests/ folder to your cluster.
+
+5. Check the status of the pods:
 
     ```bash
     kubectl get pods
