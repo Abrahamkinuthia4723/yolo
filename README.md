@@ -418,7 +418,7 @@ touch mongo-statefulset.yaml
 - Define Kubernetes Services to handle internal communication and external access for your application components.
 
 ```bash
-touch manifests/backend-svce.yaml
+touch manifests/backend-svc.yaml
 touch manifests/frontend-svc.yaml
 touch manifests/mongo-svc.yaml
 ```
