@@ -395,6 +395,44 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
 
 ---
 
+## Kubernetes Manifests Setup
+
+**Step 1**: Create Kubernetes Manifest Files for Deployments and StatefulSet
+
+- Start by creating the necessary YAML files that will define the deployments for your application components:
+
+``` bash
+mkdir -p manifests
+cd manifests
+touch frontend-deploy.yaml
+touch backend-deploy.yaml
+touch mongo-statefulset.yaml
+```
+
+- **frontend-deploy.yaml**: Defines the deployment configuration for the frontend application.
+- **backend-deploy.yaml**: Contains the deployment setup for the backend service.
+- **mongo-statefulset.yaml**: Sets up MongoDB using a StatefulSet to ensure stable network identity and persistent storage.
+
+## Step 2: Create Service Definitions to Expose Components
+
+- Define Kubernetes Services to handle internal communication and external access for your application components.
+
+```bash
+touch manifests/backend-service.yaml
+touch manifests/frontend-service.yaml
+touch manifests/mongo-service.yaml
+```
+
+### Internal Services:
+
+- **backend-service.yaml**: Exposes the backend internally to other services within the cluster.
+
+- **mongo-service.yaml**: Provides stable access to MongoDB 
+
+### Public Access:
+
+- **frontend-service.yaml**: Exposes the frontend to the internet using a LoadBalancer on port 80, allowing users to access the app through a standard web port.
+
 
 ## Deployment Instructions
 
