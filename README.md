@@ -418,20 +418,20 @@ touch mongo-statefulset.yaml
 - Define Kubernetes Services to handle internal communication and external access for your application components.
 
 ```bash
-touch manifests/backend-service.yaml
-touch manifests/frontend-service.yaml
-touch manifests/mongo-service.yaml
+touch manifests/backend-svce.yaml
+touch manifests/frontend-svc.yaml
+touch manifests/mongo-svc.yaml
 ```
 
 ### Internal Services:
 
-- **backend-service.yaml**: Exposes the backend internally to other services within the cluster.
+- **backend-svc.yaml**: Exposes the backend internally to other services within the cluster.
 
-- **mongo-service.yaml**: Provides stable access to MongoDB 
+- **mongo-svc.yaml**: Provides stable access to MongoDB 
 
 ### Public Access:
 
-- **frontend-service.yaml**: Exposes the frontend to the internet using a LoadBalancer on port 80, allowing users to access the app through a standard web port.
+- **frontend-svc.yaml**: Exposes the frontend to the internet using a LoadBalancer on port 80, allowing users to access the app through a standard web port.
 
 
 ## Deployment Instructions
