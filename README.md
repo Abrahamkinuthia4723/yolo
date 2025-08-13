@@ -397,7 +397,7 @@ backend_image: abrahamkinuthia4723/yolo-backend:1.0.0
 
 ## Kubernetes Manifests Setup
 
-**Step 1**: Create Kubernetes Manifest Files for Deployments and StatefulSet
+## Step 1: Create Kubernetes Manifest Files for Deployments and StatefulSet
 
 - Start by creating the necessary YAML files that will define the deployments for your application components:
 
